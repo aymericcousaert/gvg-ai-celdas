@@ -8,6 +8,8 @@ import core.player.AbstractPlayer;
 import ontology.Types;
 import tools.ElapsedCpuTimer;
 
+
+
 /**
  * Created with IntelliJ IDEA.
  * User: ssamot
@@ -25,8 +27,15 @@ public class Agent extends AbstractPlayer {
      */
     protected ArrayList<Types.ACTIONS> actions;
 
+    protected Planifier planifier;
+    protected TheoryMaker theoryMaker;
 
     protected Theories theories;
+    protected StateObservation lastState;
+    protected Types.ACTIONS lastAction;
+    protected StateObservation lastPredictedState;
+
+
     
     /**
      * Public constructor with state observation and time due.
@@ -35,6 +44,9 @@ public class Agent extends AbstractPlayer {
      */
     public Agent(StateObservation so, ElapsedCpuTimer elapsedTimer)
     {
+        lastState = null;
+        lastAction = null;
+        lastPredictedState = null;
         randomGenerator = new Random();
         actions = so.getAvailableActions();
     }
@@ -48,12 +60,17 @@ public class Agent extends AbstractPlayer {
      * @return An action for the current state
      */
     public Types.ACTIONS act(StateObservation stateObs, ElapsedCpuTimer elapsedTimer) {
-    	
-    	
-    	//TODO: Replace here the content and create an autonomous agent
-    	Perception perception = new Perception(stateObs);
-        System.out.println(perception.toString());
-    	
+        StateObservation currentState = stateObs.copy();
+        Perception currentPerception = new Perception(currentState);
+        if (planifier.pathFounded()) {
+            Types.ACTIONS actionToTake = planifier.getNextActionOnPath(currentState.hashCode());
+            return actionToTake;
+        }
+
+
+
+
+    	actions = stateObs.getAvailableActions();
         int index = randomGenerator.nextInt(actions.size());
         return actions.get(index);
     }

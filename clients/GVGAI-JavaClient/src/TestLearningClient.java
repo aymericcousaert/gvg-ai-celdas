@@ -17,7 +17,7 @@ public class TestLearningClient
     {
         assert (CompetitionParameters.USE_SOCKETS);
         /** Init params */
-        int gameId = 2;
+        int gameId = 0;
         String shDir = "./src/utils";
         String serverDir;
         String serverJar = "";
@@ -26,7 +26,7 @@ public class TestLearningClient
         if (CompetitionParameters.OS_WIN) {
             serverDir = "..\\..";
         } else {
-            serverDir = "../..";
+            serverDir = "../../..";
         }
         String agentName = "sampleRandom.Agent";         //Agent to play with
         boolean visuals = false;
