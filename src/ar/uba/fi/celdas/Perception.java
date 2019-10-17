@@ -87,8 +87,9 @@ public class Perception {
 	public char getAt(int i, int j){
 		return level[i][j];
 	}
-	
-	
+
+
+
 	public char[][] getLevel(){
 		return level;
 	}

@@ -14,7 +14,12 @@ public class Theory  implements Comparable<Theory>{
 	int usedCount;
 	int successCount;
 	float utility;
-	
+
+	public Theory(char[][] s1, Types.ACTIONS act, char[][] s2) {
+	    this.currentState = s1;
+	    this.action = act;
+	    this.predictedState = s2;
+    }
 	public char[][] getCurrentState() {
 		return currentState;
 	}
@@ -90,7 +95,6 @@ public class Theory  implements Comparable<Theory>{
 	
 	@Override
 	public int hashCode() {
-		
 		return this.toString().hashCode();
 	}
 	

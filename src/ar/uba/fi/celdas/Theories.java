@@ -28,22 +28,12 @@ public class Theories {
 			this.theories.put(theory.hashCodeOnlyCurrentState(), theoryList);
 			this.existenceSet.add(theory.hashCode());
 		}else{
-			throw new Exception("Theory already exist!");
+			throw new Exception("Theory already exists!");
 		}
 	}
 	
 	public boolean existsTheory(Theory theory){		
 		return this.existenceSet.contains(theory.hashCode());
-	}
-	
-	public List<Theory> getSortedListForCurrentState(Theory theory){
-		
-		List<Theory> theoryList = this.theories.get(theory.hashCodeOnlyCurrentState());
-		if(theoryList == null){
-			theoryList = new ArrayList<Theory>();
-		}		
-		Collections.sort(theoryList);
-		return theoryList;
 	}
 
 	public Set<Integer> getExistenceSet() {
@@ -61,5 +51,6 @@ public class Theories {
 	public void setTheories(Map<Integer, List<Theory>> theories) {
 		this.theories = theories;
 	}
+
 
 }

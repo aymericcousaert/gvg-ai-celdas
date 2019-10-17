@@ -18,10 +18,17 @@ public class Planifier {
     public boolean hasPath;
     private int endVertex;
 
-    public Planifier(Theories someTheories) {
-        theoriesMap = someTheories.getTheories();
+    public Planifier(Theories theories) {
+        theoriesMap = theories.getTheories();
         graph = new DefaultDirectedWeightedGraph<>(DefaultEdge.class);
-        hasPath = true;
+        hasPath = false;
+        for (List<Theory> theoriesLists : theoriesMap.values()) {
+            for (Theory theo : theoriesLists) {
+                if (theo.getUtility() == 0) {
+                    endVertex = theo.hashCodeOnlyPredictedState();
+                }
+            }
+        }
     }
 
     public void buildGraph() {
@@ -41,20 +48,28 @@ public class Planifier {
 
     public List<Integer> getShortestPath(Integer startVertex) {
         DijkstraShortestPath<Integer, DefaultEdge> dijkstra = new DijkstraShortestPath(graph);
-        GraphPath<Integer,DefaultEdge> edges = dijkstra.getPath(startVertex,endVertex);
+        GraphPath<Integer, DefaultEdge> edges = dijkstra. getPath(startVertex, endVertex);
         return edges.getVertexList();
     }
 
-    public Boolean pathFounded() {
-        if (hasPath) return true;
+    public Boolean isFull() {
+        Float distance = (float)1000;
+        for (List<Theory> theories : theoriesMap.values()) {
+            for (Theory theo : theories) {
+                if (theo.getUtility() < 10) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
-    public Types.ACTIONS getNextActionOnPath(Integer startVertex) {
+    public Types.ACTIONS getNextActionOnPath(Integer vertex) {
         Types.ACTIONS action = null;
-        List<Theory> theories = theoriesMap.get(startVertex.hashCode());
+        List<Theory> theories = theoriesMap.get(vertex);
+        List<Integer> statesOnPath = getShortestPath(vertex);
         for (Theory theo : theories) {
-            if (theo.getPredictedState().hashCode() == getShortestPath(startVertex).get(1)) {
+            if (theo.hashCodeOnlyPredictedState() == statesOnPath.get(1)) {
                 action = theo.getAction();
             }
         }

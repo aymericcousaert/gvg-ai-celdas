@@ -15,12 +15,12 @@ import com.google.gson.stream.JsonReader;
 
 public class TheoryPersistant {
 	
-	public static final String FILEANME = "theories.json";
+	public static final String FILENAME = "theories.json";
 	
 
 	public static void save(Theories theories) throws JsonIOException, IOException{
 				
-		try (Writer writer = new FileWriter(FILEANME)) {
+		try (Writer writer = new FileWriter(FILENAME)) {
 		    Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		    gson.toJson(theories, writer);		    
 		}
@@ -28,7 +28,7 @@ public class TheoryPersistant {
 
 	public static Theories load() throws FileNotFoundException{
 		Gson gson = new Gson();
-		JsonReader reader = new JsonReader(new FileReader(FILEANME));
+		JsonReader reader = new JsonReader(new FileReader(FILENAME));
 		
 		Type listType = new TypeToken<Theories>(){}.getType();
 		

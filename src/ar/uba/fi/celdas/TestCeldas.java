@@ -12,7 +12,7 @@ public class TestCeldas
 
     public static void main(String[] args)
     {
-        /*
+
         //Available controllers:
     	String celdasAgent = "ar.uba.fi.celdas.Agent";
     	        
@@ -75,8 +75,8 @@ public class TestCeldas
 //                    actionFiles[actionIdx++] = "actions_game_" + i + "_level_" + j + "_" + k + ".txt";
 //            }
 //            ArcadeMachine.runGames(game, levels, M, sampleMCTSController, saveActions? actionFiles:null);
-//        }*/
+//        }
 
-        planifierTest();
+        //planifierTest();
     }
 }
