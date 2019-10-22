@@ -44359,7 +44359,7 @@
             "w"
           ]
         ],
-        "usedCount": 7,
+        "usedCount": 8,
         "successCount": 1,
         "utility": 70.71068
       },
@@ -44621,7 +44621,7 @@
             "w"
           ]
         ],
-        "usedCount": 6,
+        "usedCount": 7,
         "successCount": 0,
         "utility": 1000.0
       },
@@ -44883,8 +44883,8 @@
             "w"
           ]
         ],
-        "usedCount": 5,
-        "successCount": 5,
+        "usedCount": 6,
+        "successCount": 6,
         "utility": 0.0
       }
     ]
